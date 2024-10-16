@@ -51,8 +51,10 @@ export default function page() {
         "color": "#121212"
       }
     };
-    const razor = new window.Razorpay(options);
-    razor.open();
+    if (typeof window !== "undefined") {
+      const razor = new window.Razorpay(options);
+      razor.open();
+    }
   }
 
   return (

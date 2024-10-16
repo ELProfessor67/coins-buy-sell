@@ -3,9 +3,7 @@
 /backend/.env
 /backend/test.js
 
-# /frontend/node_modules
-# /frontend/.next/
-# /frontend/.env*.local
+
 
 
 /smartContract/node_modules

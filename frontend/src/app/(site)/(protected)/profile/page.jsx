@@ -9,16 +9,27 @@ import { useRouter } from 'next/navigation';
 
 export default function ProfilePage() {
   const [balance, setBalance] = useState("****");
+  const [origin,setOrigin] = useState('');
   const {user,setUser,setIsAuth} = useContext(UserContext);
   const router = useRouter();
 
   const [copied, setCopied] = useState(false)
 
   const copyReferralLink = () => {
-    navigator.clipboard.writeText(`${window.location.origin}/register?refferalBy=${user?.refreral}`)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    if (typeof window !== "undefined") {
+      navigator.clipboard.writeText(`${window.location.origin}/register?refferalBy=${user?.refreral}`)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+   
+    }
   }
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setOrigin(window.location.origin);
+    }
+  },[])
 
 
 
@@ -88,7 +99,7 @@ export default function ProfilePage() {
           <div className="flex items-center bg-gray-100 rounded-md p-2">
             <input 
               type="text" 
-              value={`${window.location.origin}/register?refferalBy=${user?.refreral}`} 
+              value={`${origin}/register?refferalBy=${user?.refreral}`} 
               readOnly 
               className="bg-transparent flex-grow text-gray-700 mr-2 outline-none"
             />
