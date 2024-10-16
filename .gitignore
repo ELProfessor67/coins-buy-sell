@@ -1,0 +1,27 @@
+/backend/node_modules
+/backend/package-lock.json
+/backend/.env
+/backend/test.js
+
+# /frontend/node_modules
+# /frontend/.next/
+# /frontend/.env*.local
+
+
+/smartContract/node_modules
+/smartContract/.env
+
+# Hardhat files
+/smartContract/cache
+/smartContract/artifacts
+
+# TypeChain files
+/smartContract/typechain
+/smartContract/typechain-types
+
+# solidity-coverage files
+/smartContract/coverage
+/smartContract/coverage.json
+
+# Hardhat Ignition default folder for deployments against a local node
+/smartContract/ignition/deployments/chain-31337

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*
+{
+  box-sizing: border-box !important;
+}
+html,body
+{
+  width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
+.clip-path
+{
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+
+body
+{
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+
