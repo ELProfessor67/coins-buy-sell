@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Atom, Brain, ChartLine, ChartNoAxesColumn, ContactRound, LayoutGrid, MessageCircle, Settings, User, X } from 'lucide-react'
+import { Atom, Brain, ChartLine, ChartNoAxesColumn, Coins, ContactRound, LayoutGrid, MessageCircle, Settings, User, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
@@ -29,6 +29,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <Link href="/dashboard/widthraw-request" className={`flex items-center gap-2 py-2 px-4 rounded  hover:bg-white hover:text-black ${pathname.includes('bill-management') ? 'bg-white text-black' : ''}`}>
                     <span><ChartNoAxesColumn size={20}/></span>
                     Widthraw Requests
+                </Link>
+
+                <Link href="/dashboard/tokens" className={`flex items-center gap-2 py-2 px-4 rounded  hover:bg-white hover:text-black ${pathname.includes('bill-management') ? 'bg-white text-black' : ''}`}>
+                    <span><Coins size={20}/></span>
+                    Token
                 </Link>
 
 

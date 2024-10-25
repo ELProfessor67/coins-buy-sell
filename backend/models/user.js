@@ -28,7 +28,8 @@ const schema = new mongoose.Schema({
 	refreralBy: {type: String, default: undefined},
 	role: {type: String,default: 'user',enum: ['user','admin']},
 	walletAddress: {type: String,required: true},
-	bankAccount: {type: mongoose.Schema.Types.ObjectId, ref: 'BankAccount',default: undefined}
+	bankAccount: {type: mongoose.Schema.Types.ObjectId, ref: 'BankAccount',default: undefined},
+	tokens: [{type: mongoose.Schema.Types.ObjectId,ref: 'token',default: undefined}]
 },{timestamps: true});
 
 schema.pre("save", async function (next) {

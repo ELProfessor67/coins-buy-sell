@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 // Create an Axios instance
-const api = axios.create({
+export const api = axios.create({
   baseURL: `${BACKEND_URL}/api/v1`,
   withCredentials: true,
   headers: {

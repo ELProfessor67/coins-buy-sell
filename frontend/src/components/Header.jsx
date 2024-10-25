@@ -17,11 +17,18 @@ const Header = () => {
                 <span className="text-xl font-bold">Cryptoland</span>
             </div>
             <nav className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 bg-purple-500 md:bg-transparent p-4 md:p-0 space-y-4 md:space-y-0 md:space-x-6`}>
-                {['About', 'Services', 'Road Map', 'Statistics', 'Team', 'FAQ'].map((item) => (
-                    <Link key={item} href="#" className="text-white hover:text-gray-200 transition duration-300">
-                        {item}
+                {[['Home','/'],['Tokens','/tokens'],['About','/about'], ['Contact Us','/contact-us']].map((item) => (
+                    <Link key={item} href={item[1]} className="text-white hover:text-gray-200 transition duration-300">
+                        {item[0]}
                     </Link>
                 ))}
+
+                {
+                    user?.role == "admin" &&
+                    <Link href={'/dashboard'} className="text-white hover:text-gray-200 transition duration-300">
+                        Dashboard
+                    </Link>
+                }
             </nav>
             <div className="flex items-center space-x-4">
            

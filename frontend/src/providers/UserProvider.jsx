@@ -32,7 +32,7 @@ const UserProvider = ({children}) => {
     },[])
 
     return(
-        <UserContext.Provider value={{user,setUser,isAuth,setIsAuth,loading}}>
+        <UserContext.Provider value={{user,setUser,isAuth,setIsAuth,loading,getUser}}>
             {children}
         </UserContext.Provider>
     )

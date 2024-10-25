@@ -12,6 +12,7 @@ export const checkout = catchAsyncError(async (req, res) => {
     amount: Number(req.body.amount * 100),
     currency: "INR",
   };
+
   const order = await razorpayInstance.orders.create(options);
 
   const payment = await PaymentModel.create({
