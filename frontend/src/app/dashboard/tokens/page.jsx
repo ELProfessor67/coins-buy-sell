@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 export default function page() {
     const [tokens, setTokens] = useState([]);
     const [open, setOpen] = useState(false);
+    const [loading,setLoading] = useState(false);
 
     const [tokenData, setTokenData] = useState({
         name: '',
@@ -44,6 +45,7 @@ export default function page() {
 
 
     const handleSubmit = useCallback(async (e) => {
+        setLoading(false)
         e.preventDefault();
         try {
             const formData = new FormData();
@@ -65,6 +67,8 @@ export default function page() {
             }
         } catch (e) {
             toast.error(e.response?.data?.message || e.message)    
+        }finally{
+            setLoading(false)
         }
     },[tokenData])
 
@@ -136,7 +140,7 @@ export default function page() {
                             <img src={tokenData.fileprev} className='w-28 h-24 rounded-sm'/>
                         </div>
                     }
-                    <button className='bg-black dark:bg-white dark:text-black text-white rounded-md px-4 py-2 font-medium flex items-center gap-2 w-full justify-center !mt-8' type='submit'>Add Token</button>
+                    <button className='bg-black dark:bg-white dark:text-black text-white rounded-md px-4 py-2 font-medium flex items-center gap-2 w-full justify-center !mt-8' type='submit' disabled={loading}>{loading ? 'Loading...' : 'Add Token'}</button>
                 </form>
             </DialogBox>
 
