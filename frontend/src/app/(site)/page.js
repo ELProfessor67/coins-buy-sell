@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 
@@ -38,13 +39,6 @@ export default function page() {
 
         <section className="bg-white  px-4 py-16">
           <div className="container mx-auto">
-            <div className="flex flex-wrap justify-center items-center gap-8 mb-20">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="w-32 h-12 bg-gray-200 rounded-md flex items-center justify-center">
-                  <span className="text-gray-500 font-semibold">Logo {i}</span>
-                </div>
-              ))}
-            </div>
 
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-10 md:mb-0">
@@ -80,6 +74,65 @@ export default function page() {
           </div>
    
         </section>
+
+        <div className="container mx-auto px-4 py-16 space-y-24">
+      {/* Section 1: Image Left, Text Right */}
+      <section className="flex flex-col md:flex-row items-center gap-8">
+        <div className="w-full md:w-1/2">
+          <Image
+            src="/images/building.jpg"
+            alt="Stock market graph"
+            width={600}
+            height={400}
+            className="rounded-lg shadow-lg h-[25rem]"
+          />
+        </div>
+        <div className="w-full md:w-1/2 space-y-4">
+          <h2 className="text-3xl font-bold text-primary">Expert Stock Market Analysis</h2>
+          <p className="text-lg text-muted-foreground">
+            Our platform provides cutting-edge tools and insights for independent investors. 
+            With real-time data and advanced analytics, you'll have the power to make informed 
+            decisions in the dynamic world of stock trading.
+          </p>
+          <ul className="list-disc list-inside text-muted-foreground">
+            <li>Real-time market data</li>
+            <li>Advanced charting tools</li>
+            <li>Personalized stock recommendations</li>
+            <li>Risk assessment algorithms</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Section 2: Text Left, Image Right */}
+      <section className="flex flex-col md:flex-row-reverse items-center gap-8">
+        <div className="w-full md:w-1/2">
+          <Image
+            src="/images/share-market-investment.jpg"
+            alt="Investor using laptop"
+            width={600}
+            height={400}
+            className="rounded-lg shadow-lg h-[25rem]"
+          />
+        </div>
+        <div className="w-full md:w-1/2 space-y-4">
+          <h2 className="text-3xl font-bold text-primary">Empowering Independent Investors</h2>
+          <p className="text-lg text-muted-foreground">
+            Take control of your financial future with our comprehensive suite of investment tools. 
+            Whether you're a seasoned trader or just starting out, our platform is designed to help 
+            you navigate the stock market with confidence.
+          </p>
+          <ul className="list-disc list-inside text-muted-foreground">
+            <li>Educational resources and webinars</li>
+            <li>Portfolio tracking and optimization</li>
+            <li>Customizable alerts and notifications</li>
+            <li>Secure and user-friendly interface</li>
+          </ul>
+          <button className="bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors">
+            Start Investing Now
+          </button>
+        </div>
+      </section>
+    </div>
 
       
     </>
