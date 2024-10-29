@@ -15,13 +15,15 @@ export default function RegisterPage({searchParams}) {
   const [address, setAddress] = useState('')
   const [country, setCountry] = useState('')
   const [phone, setPhone] = useState('')
-  const [refreral, setRefreral] = useState(searchParams.refferalBy)
+  const [refreral, setRefreral] = useState(searchParams.refferalBy);
+  const [loading, setLoading] = useState(false)
 
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     try {
       const formData = new FormData();
       formData.append('name',name);
@@ -40,6 +42,8 @@ export default function RegisterPage({searchParams}) {
       toast.success(res.data?.message);
     } catch (error) {
       toast.success(error?.response?.data?.message);
+    }finally{
+      setLoading(false)
     }
     
   }
@@ -181,7 +185,7 @@ export default function RegisterPage({searchParams}) {
               type="submit"
               className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
             >
-              Create Account
+              {loading ? 'Loading...':'Create Account'}
             </button>
           </form>
           <div className="mt-6 text-center">

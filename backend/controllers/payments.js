@@ -1,7 +1,6 @@
 import { razorpayInstance } from "../server.js";
 import crypto from "crypto";
 import UserModel from "../models/user.js";
-import wallet from "../web3/wallets.js";
 import { PaymentModel } from "../models/payment.js";
 import catchAsyncError from "../middlewares/catchAsyncError.js";
 
@@ -52,8 +51,19 @@ export const paymentVerification = catchAsyncError(async (req, res) => {
     payment.razorpay_signature = razorpay_signature;
     payment.status = "success";
     await payment.save();
-    console.log('payment',user.walletAddress,Number(payment.coins))
-    await wallet.addCoins(user.walletAddress,Number(payment.coins));
+    user.balance += Number(payment.coins);
+
+    if(user.isFirstTimeDeposit == true && user.refreralBy){
+      const refreralUser = await UserModel.findOne({refreral: user.refreralBy});
+      if(refreralUser){
+        refreralUser.balance += 1;
+        refreralUser.save();
+      }
+    }
+
+    user.isFirstTimeDeposit = false;
+    await user.save();
+    
     res.redirect(
       `${process.env.FRONTEND_URL}/payment-success?reference=${razorpay_payment_id}&coins=${payment.coins}`
     );

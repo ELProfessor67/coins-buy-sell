@@ -13,8 +13,8 @@ const Header = () => {
     return (
         <header className="container mx-auto px-4 py-6 flex items-center justify-between absolute top-0 left-0 right-0 w-full z-50">
             <div className="flex items-center text-white">
-                <img src='/images/logo.svg' className='w-14'/>
-                <span className="text-xl font-bold">Cryptoland</span>
+                <img src='/images/logo.png' className='w-[15rem]'/>
+              
             </div>
             <nav className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full left-0 right-0 bg-purple-500 md:bg-transparent p-4 md:p-0 space-y-4 md:space-y-0 md:space-x-6`}>
                 {[['Home','/'],['Tokens','/tokens'],['About','/about'], ['Contact Us','/contact-us']].map((item) => (

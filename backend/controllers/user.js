@@ -3,7 +3,6 @@ import UserModel from '../models/user.js';
 import sendEmail from '../utils/sendEmail.js';
 import crypto from 'crypto'
 import {generate} from 'referral-codes'
-import wallet from '../web3/wallets.js'
 
 export const register = catchAsyncError(async (req, res) => {
 	const {name, email, password,address,state,city,phone,country,refreralBy} = req.body;
@@ -28,11 +27,11 @@ export const register = catchAsyncError(async (req, res) => {
         return
 	}
 
-    const walletAddress = await wallet.createWallet();
+    
 
 
 	const user = await UserModel.create({
-		name, email, password,address,state,city,phone,country,refreralBy,refreral,walletAddress
+		name, email, password,address,state,city,phone,country,refreralBy,refreral,balance:0,isFirstTimeDeposit: true
 	});
 	await user.sendOTP();
 	res.status(200).json({

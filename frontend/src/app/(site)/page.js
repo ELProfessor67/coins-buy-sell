@@ -7,14 +7,19 @@ export default function page() {
 
   return (
   <>
-      <main className='bg-gradient-to-br from-purple-500 to-pink-500 relative pt-16 md:pt-0'>
+      {/* <main className='bg-gradient-to-br from-purple-500 to-pink-500 relative pt-16 md:pt-0'> */}
+      {/* <main className='bg-[#57a6a1] relative pt-16 md:pt-0'> */}
+      <main className='bg-[#d4cda1] relative pt-16 md:pt-0'>
+        <div className='h-[3rem] hidden sm:block xl:hidden'>
+
+        </div>
         <section className="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center relative z-10">
           <div className="md:w-1/2 mb-10 md:mb-0">
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-              Blockchain is future of the business technology!
+             Real Estate Investment: The Future of Wealth Creation!
             </h1>
             <p className="text-white text-lg mb-8">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
+            Discover how real estate investment can pave your path to financial freedom and lasting wealth creation!
             </p>
             <button className="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300">
               <Link href={'/login'}>
@@ -43,14 +48,14 @@ export default function page() {
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-10 md:mb-0">
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                  Cryptoland Theme is the best for your ICO
+                InvestWell Realty is the Future of Wealth Creation
                 </h2>
                 <p className="text-gray-600 mb-6">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.
+                Unlock the potential of real estate investing with our expert strategies. Build your wealth and secure your future!
                 </p>
                 <ul className="space-y-2">
-                  {['Feature 1', 'Feature 2', 'Feature 3'].map((feature) => (
-                    <li key={feature} className="flex items-center">
+                  {['FutureNest Realty', 'WealthSphere Investments', 'Prosperity Partners Realty'].map((feature) => (
+                    <li key={feature} className="flex items-center text-gray-600">
                       <svg className="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
@@ -88,17 +93,15 @@ export default function page() {
           />
         </div>
         <div className="w-full md:w-1/2 space-y-4">
-          <h2 className="text-3xl font-bold text-primary">Expert Stock Market Analysis</h2>
-          <p className="text-lg text-muted-foreground">
-            Our platform provides cutting-edge tools and insights for independent investors. 
-            With real-time data and advanced analytics, you'll have the power to make informed 
-            decisions in the dynamic world of stock trading.
+          <h2 className="text-3xl font-bold text-primary text-gray-800">Smart Real Estate Investments</h2>
+          <p className="text-lg text-muted-foreground text-gray-600">
+          Our platform offers innovative strategies and insights for investors looking to thrive in the real estate market. With comprehensive market analysis and collaborative funding options, you'll be equipped to make informed decisions in the evolving landscape of property investment.
           </p>
-          <ul className="list-disc list-inside text-muted-foreground">
-            <li>Real-time market data</li>
-            <li>Advanced charting tools</li>
-            <li>Personalized stock recommendations</li>
-            <li>Risk assessment algorithms</li>
+          <ul className="list-disc list-inside text-muted-foreground text-gray-600">
+            <li>Collaborative investment opportunities</li>
+            <li>In-depth market analysis</li>
+            <li>Tailored property recommendations</li>
+            <li>Risk management strategies</li>
           </ul>
         </div>
       </section>
@@ -115,21 +118,42 @@ export default function page() {
           />
         </div>
         <div className="w-full md:w-1/2 space-y-4">
-          <h2 className="text-3xl font-bold text-primary">Empowering Independent Investors</h2>
-          <p className="text-lg text-muted-foreground">
-            Take control of your financial future with our comprehensive suite of investment tools. 
-            Whether you're a seasoned trader or just starting out, our platform is designed to help 
-            you navigate the stock market with confidence.
+          <h2 className="text-3xl font-bold text-primary text-gray-800">NextGen Property Investments</h2>
+          <p className="text-lg text-muted-foreground text-gray-600">
+          Our platform empowers investors with innovative tools and expert insights to navigate the real estate market. With data-driven strategies and community-driven funding, you'll confidently build your wealth in the property sector.
           </p>
-          <ul className="list-disc list-inside text-muted-foreground">
-            <li>Educational resources and webinars</li>
-            <li>Portfolio tracking and optimization</li>
-            <li>Customizable alerts and notifications</li>
-            <li>Secure and user-friendly interface</li>
+          <ul className="list-disc list-inside text-muted-foreground text-gray-600">
+            <li>Crowdfunding opportunities</li>
+            <li>Market trend analytics</li>
+            <li>Customized investment plans</li>
+            <li>Portfolio diversification strategies</li>
           </ul>
-          <button className="bg-primary text-primary-foreground px-6 py-2 rounded-md hover:bg-primary/90 transition-colors">
-            Start Investing Now
-          </button>
+        </div>
+      </section>
+
+
+      {/* Section 3: Image Left, Text Right */}
+      <section className="flex flex-col md:flex-row items-center gap-8">
+        <div className="w-full md:w-1/2">
+          <Image
+            src="/images/bulding-2.png"
+            alt="Stock market graph"
+            width={600}
+            height={400}
+            className="rounded-lg shadow-lg h-[25rem]"
+          />
+        </div>
+        <div className="w-full md:w-1/2 space-y-4">
+          <h2 className="text-3xl font-bold text-primary text-gray-800">WealthBridge Realty Solutions</h2>
+          <p className="text-lg text-muted-foreground text-gray-600">
+          At WealthBridge, we connect investors with lucrative real estate opportunities. Our comprehensive platform offers valuable insights and a collaborative approach, helping you maximize your investment potential in today's dynamic market.
+          </p>
+          <ul className="list-disc list-inside text-muted-foreground text-gray-600">
+            <li>Exclusive property listings</li>
+            <li>Data-backed investment insights</li>
+            <li>Personalized investment guidance</li>
+            <li>Financial performance tracking</li>
+          </ul>
         </div>
       </section>
     </div>

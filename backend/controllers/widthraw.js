@@ -2,7 +2,7 @@ import catchAsyncError from "../middlewares/catchAsyncError.js";
 import WithdrawRequestModel from "../models/widthraw.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import UserModel from "../models/user.js";
-import wallet from "../web3/wallets.js";
+import user from "../models/user.js";
 
 export const createWithdrawRequest = catchAsyncError(async(req,res,next)=>{
     const {amount,method,coins} = req.body;
@@ -22,7 +22,8 @@ export const createWithdrawRequest = catchAsyncError(async(req,res,next)=>{
     });
 
     try {
-        await wallet.subtractCoins(user.walletAddress,coins);
+        user.balance -= Number(coins);
+        await user.save();
     } catch (error) {
         console.log(error);
         await WithdrawRequestModel.findByIdAndDelete(withdrawRequest._id);
@@ -80,6 +81,7 @@ export const updateWidthrawRequestStatus = catchAsyncError(async (req, res, next
     const { status } = req.body;
 
     const withdrawRequest = await WithdrawRequestModel.findById(id).populate('user');
+    const user = await UserModel(withdrawRequest.user._id)
 
     if (!withdrawRequest) {
         return res.status(404).json({
@@ -98,7 +100,8 @@ export const updateWidthrawRequestStatus = catchAsyncError(async (req, res, next
     withdrawRequest.status = status;
     await withdrawRequest.save();
     if(status === 'rejected'){
-        await wallet.addCoins(withdrawRequest.user.walletAddress,withdrawRequest.coins);
+        user.balance += Number(withdrawRequest.coins);
+        await user.save();
     }
 
     res.status(200).json({

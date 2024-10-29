@@ -1,4 +1,4 @@
-export default function CoinCard({ coins, price, extra, isPopular, isHovered,checkoutHandler }) {
+export default function CoinCard({ coins, price, extra, isPopular, isHovered,checkoutHandler, loading }) {
     return (
       <div 
       
@@ -32,7 +32,7 @@ export default function CoinCard({ coins, price, extra, isPopular, isHovered,che
              bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg cursor-pointer
             `}
           >
-            Buy Now
+            {loading ? "Loading..." : "Buy Now"}
           </button>
         </div>
         <div 

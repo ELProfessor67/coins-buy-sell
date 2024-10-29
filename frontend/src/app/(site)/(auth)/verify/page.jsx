@@ -9,6 +9,7 @@ import { UserContext } from '@/providers/UserProvider'
 export default function OTPPage() {
   const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const inputRefs = useRef([])
+  const [loading,setLoading] = useState(false);
 
   const router = useRouter();
   const {setUser,setIsAuth} = useContext(UserContext);
@@ -42,6 +43,7 @@ export default function OTPPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     const otpValue = otp.join('');
 
     try {
@@ -56,6 +58,8 @@ export default function OTPPage() {
       toast.success(res.data?.message);
     } catch (error) {
       toast.success(error?.response?.data?.message);
+    }finally{
+      setLoading(false);
     }
   }
 
@@ -95,7 +99,7 @@ export default function OTPPage() {
               type="submit"
               className="w-full bg-purple-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 transition duration-300"
             >
-              Verify
+              {loading ? 'Loading...':'Verify'}
             </button>
           </form>
           <div className="mt-6 text-center">

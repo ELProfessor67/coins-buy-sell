@@ -5,6 +5,7 @@ import { BACKEND_URL } from '@/constants/URLS';
 import { checkoutRequest, getRazorpayKeyRequest } from '@/http/user';
 import { UserContext } from '@/providers/UserProvider';
 import { useContext, useState } from 'react'
+import { toast } from 'react-toastify';
 
 const coinPlans = [
   { coins: 59, price: 5000, extra: 2 },
@@ -17,44 +18,52 @@ const coinPlans = [
 
 export default function page() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
 
 
 
-  const checkoutHandler = async (amount,coins) => {
-    console.log(amount,coins)
+  const checkoutHandler = async (amount, coins) => {
+    setLoading(true);
     const { data: { key } } = await getRazorpayKeyRequest();
+    try {
+      const formData = new FormData();
+      formData.append("amount", amount);
+      formData.append("coins", coins);
+      const { data: { order } } = await checkoutRequest(formData);
 
-    const formData = new FormData();
-    formData.append("amount",amount);
-    formData.append("coins",coins);
-    const { data: { order } } = await checkoutRequest(formData);
-
-    const options = {
-      key,
-      amount: order.amount,
-      currency: "INR",
-      name: "Coins By Sells",
-      description: `${user.name} buy ${coins} coins`,
-      image: "/images/grow-land.png",
-      order_id: order.id,
-      callback_url: `${BACKEND_URL}/api/v1/razarpay/paymentverification`,
-      prefill: {
-        name: user.name,
-        email: user.email,
-        contact: user.phone
-      },
-      notes: {
-        "address": user.address
-      },
-      theme: {
-        "color": "#121212"
+      const options = {
+        key,
+        amount: order.amount,
+        currency: "INR",
+        name: "Coins By Sells",
+        description: `${user.name} buy ${coins} coins`,
+        image: "/images/grow-land.png",
+        order_id: order.id,
+        callback_url: `${BACKEND_URL}/api/v1/razarpay/paymentverification`,
+        prefill: {
+          name: user.name,
+          email: user.email,
+          contact: user.phone
+        },
+        notes: {
+          "address": user.address
+        },
+        theme: {
+          "color": "#121212"
+        }
+      };
+      if (typeof window !== "undefined") {
+        setLoading(false);
+        const razor = new window.Razorpay(options);
+        razor.open();
       }
-    };
-    if (typeof window !== "undefined") {
-      const razor = new window.Razorpay(options);
-      razor.open();
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error?.message)
+    }finally{
+      setLoading(false)
     }
+
   }
 
   return (
@@ -71,7 +80,7 @@ export default function page() {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <CoinCard {...plan} isPopular={index === 1} isHovered={hoveredIndex === index} checkoutHandler={checkoutHandler} />
+              <CoinCard {...plan} isPopular={index === 1} isHovered={hoveredIndex === index} checkoutHandler={checkoutHandler} loading={loading}/>
             </div>
           ))}
         </div>

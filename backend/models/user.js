@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import sendEmail from '../utils/sendEmail.js';
-import wallet from '../web3/wallets.js';
+import { type } from 'os';
 
 
 function generateOTP() {
@@ -27,9 +27,11 @@ const schema = new mongoose.Schema({
 	refreral: {type: String,required: true, unique: true},
 	refreralBy: {type: String, default: undefined},
 	role: {type: String,default: 'user',enum: ['user','admin']},
-	walletAddress: {type: String,required: true},
+	// walletAddress: {type: String,required: true},
 	bankAccount: {type: mongoose.Schema.Types.ObjectId, ref: 'BankAccount',default: undefined},
-	tokens: [{type: mongoose.Schema.Types.ObjectId,ref: 'token',default: undefined}]
+	tokens: [{type: mongoose.Schema.Types.ObjectId,ref: 'token',default: undefined}],
+	balance: {type: Number,default: 0},
+	isFirstTimeDeposit: {type: Boolean,default: true}
 },{timestamps: true});
 
 schema.pre("save", async function (next) {
@@ -75,9 +77,8 @@ schema.pre("save", async function (next) {
 	return resetToken;
   };
 
-  schema.methods.getBalence = async function () {
-	const balance = await wallet.getBalance(this.walletAddress);
-	return balance;
+  schema.methods.getBalence = async function () {	
+	return this.balance;
   };
 
 
