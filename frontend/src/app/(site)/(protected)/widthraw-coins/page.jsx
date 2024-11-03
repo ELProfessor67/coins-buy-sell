@@ -39,20 +39,18 @@ export default function Page() {
 
     //calculate amount
     useEffect(() => {
-        if (!coinAmount) return setAmount(0)
-        setAmount(coinAmount * exchangeRate)
+        if (!coinAmount) return setAmount(0);
+        setAmount(coinAmount * exchangeRate);
     }, [coinAmount, exchangeRate]);
 
 
     //amount validation
     useEffect(() => {
-        if (!amount) return setError("")
-        if (amount < 10) {
-            setError("You can't withdraw less than 10 coins")
-        } else if (balance < coinAmount) {
-            setError(`You don't have enough coins to withdraw`)
-        } else {
-            setError("")
+        if (!coinAmount) return setError("")
+        if (coinAmount > 10) {
+            setError("Maximum Withdrawal Limit is 10.")
+        }else{
+            setError("");
         }
 
     }, [amount, coinAmount])

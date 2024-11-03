@@ -1,4 +1,4 @@
-export default function CoinCard({ coins, price, extra, isPopular, isHovered,checkoutHandler, loading }) {
+export default function CoinCard({ coins, price, extra, isPopular, isHovered,checkoutHandler, loading,index }) {
     return (
       <div 
       
@@ -26,13 +26,13 @@ export default function CoinCard({ coins, price, extra, isPopular, isHovered,che
             + {extra.toLocaleString()} Extra Coins
           </div>
           <button
-            onClick={() => checkoutHandler(price,coins+extra)}
+            onClick={() => checkoutHandler(price,coins+extra,index)}
             className={`
               w-full py-4 px-6 rounded-full text-lg font-semibold transition-all duration-300
              bg-purple-600 text-white hover:bg-purple-700 hover:shadow-lg cursor-pointer
             `}
           >
-            {loading ? "Loading..." : "Buy Now"}
+            {loading == index ? "Loading..." : "Buy Now"}
           </button>
         </div>
         <div 

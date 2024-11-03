@@ -19,12 +19,12 @@ const coinPlans = [
 export default function page() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const { user } = useContext(UserContext);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(-1);
 
 
 
-  const checkoutHandler = async (amount, coins) => {
-    setLoading(true);
+  const checkoutHandler = async (amount, coins,index) => {
+    setLoading(index);
     const { data: { key } } = await getRazorpayKeyRequest();
     try {
       const formData = new FormData();
@@ -51,17 +51,28 @@ export default function page() {
         },
         theme: {
           "color": "#121212"
+        },
+        options: {
+          checkout: {
+            method: {
+              "netbanking": "1",
+              "card": "0",
+              "upi": "1",
+              "wallet": "0"
+            }
+          }
         }
+        
       };
       if (typeof window !== "undefined") {
-        setLoading(false);
+        setLoading(-1);
         const razor = new window.Razorpay(options);
         razor.open();
       }
     } catch (error) {
       toast.error(error?.response?.data?.message || error?.message)
     }finally{
-      setLoading(false)
+      setLoading(-1)
     }
 
   }
@@ -80,7 +91,7 @@ export default function page() {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <CoinCard {...plan} isPopular={index === 1} isHovered={hoveredIndex === index} checkoutHandler={checkoutHandler} loading={loading}/>
+              <CoinCard {...plan} isPopular={index === 1} isHovered={hoveredIndex === index} checkoutHandler={checkoutHandler} loading={loading} index={index}/>
             </div>
           ))}
         </div>

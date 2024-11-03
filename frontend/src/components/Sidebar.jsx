@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Atom, Brain, ChartLine, ChartNoAxesColumn, Coins, ContactRound, LayoutGrid, MessageCircle, Settings, User, X } from 'lucide-react'
+import { Atom, Brain, ChartLine, ChartNoAxesColumn, Coins, ContactRound, Home, LayoutGrid, MessageCircle, Settings, User, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
@@ -37,9 +37,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 </Link>
 
 
-                <Link href="/dashboard/message" className={`flex items-center gap-2 py-2 px-4 rounded hover:bg-white hover:text-black ${pathname.includes('mailbox') ? 'bg-white text-black' : ''}`}>
+                <Link href="/dashboard/messages" className={`flex items-center gap-2 py-2 px-4 rounded hover:bg-white hover:text-black ${pathname.includes('mailbox') ? 'bg-white text-black' : ''}`}>
                     <span><MessageCircle size={20}/></span>
                     Messages
+                </Link>
+
+                <Link href="/" className={`flex items-center gap-2 py-2 px-4 rounded hover:bg-white hover:text-black ${pathname.includes('mailbox') ? 'bg-white text-black' : ''}`}>
+                    <span><Home size={20}/></span>
+                    Home
                 </Link>
             </nav>
         </aside>

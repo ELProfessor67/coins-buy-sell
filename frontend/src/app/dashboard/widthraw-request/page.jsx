@@ -39,10 +39,10 @@ export default function page() {
         {/* Bill Statistics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           {[
-            { title: "Pending Requests", value: "350", change: "+10% from yesterday" },
-            { title: "Paids Requests", value: "250", change: "+8% from yesterday" },
-            { title: "Rejected Requests", value: "9", change: "+2% from yesterday" },
-            { title: "Total Requests", value: "12", change: "+3% from yesterday" },
+            { title: "Pending Requests", value: widthrawRequests?.filter(r => r.status == 'processing')?.length, change: "+10% from yesterday" },
+            { title: "Paids Requests", value: widthrawRequests?.filter(r => r.status == 'completed')?.length, change: "+8% from yesterday" },
+            { title: "Rejected Requests", value: widthrawRequests?.filter(r => r.status == 'rejected')?.length, change: "+2% from yesterday" },
+            { title: "Total Requests", value: widthrawRequests?.length, change: "+3% from yesterday" },
           ].map((stat, index) => (
             <div key={index} className="bg-white-shade-1 dark:bg-gray-8 p-6 rounded-lg shadow">
               <h2 className="text-4xl font-bold mb-2">{stat.value}</h2>

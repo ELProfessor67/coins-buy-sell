@@ -157,11 +157,12 @@ export default function RegisterPage({searchParams}) {
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone</label>
                 <input
                   id="phone"
-                  type="tel"
+                  type="number"
                   placeholder="Enter your phone number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   required
+                  minLength={10}
                   className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                              focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
                 />
@@ -169,9 +170,9 @@ export default function RegisterPage({searchParams}) {
             </div>
 
             <div>
-              <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
+              <label htmlFor="address" className="block text-sm font-medium text-gray-700">Referral Code</label>
               <input
-                id="address"
+                id="referral"
                 type="text"
                 placeholder="Refreral Code (Optional)"
                 value={refreral}

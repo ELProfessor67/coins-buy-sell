@@ -47,12 +47,11 @@ export default function page() {
         <p className="text-gray-600 dark:text-gray-400 mb-6">Users Summary</p>
 
         {/* Bill Statistics */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
           {[
-            { title: "Total Users", value: "350", change: "+10% from yesterday" },
-            { title: "Total Admins", value: "250", change: "+8% from yesterday" },
-            { title: "Total Moderators", value: "9", change: "+2% from yesterday" },
-            { title: "Total Users", value: "12", change: "+3% from yesterday" },
+            { title: "Admins", value: users?.filter(u => u.role == "admin")?.length, change: "User with an Admin role." },
+            { title: "Users", value: users?.filter(u => u.role == "user")?.length, change: "User with an User role." },
+            { title: "Total", value: users?.length, change: "Total Users" },
           ].map((stat, index) => (
             <div key={index} className="bg-white-shade-1 dark:bg-gray-8 p-6 rounded-lg shadow">
               <h2 className="text-4xl font-bold mb-2">{stat.value}</h2>

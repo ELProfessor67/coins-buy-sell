@@ -8,8 +8,7 @@ const bankAccountSchema = new mongoose.Schema({
   },
   accountNumber: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   accountHolderName: {
     type: String,

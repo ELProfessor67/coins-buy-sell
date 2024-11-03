@@ -8,15 +8,19 @@ import { toast } from 'react-toastify';
 export default function Page() {
 
     const { user } = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         try {
             const formData = new FormData(e.target);
             const res = await addBankAccountRequest(formData);
             toast.success(res.data.message);
         } catch (error) {
             toast.error(error?.response?.data?.message || error?.message);
+        }finally{
+            setLoading(false);
         }
     }
 
@@ -87,7 +91,7 @@ export default function Page() {
                                 type="submit"
                                 className="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition duration-300"
                             >
-                                {user?.bankAccount ? "Save Account":"Add Bank Account"}
+                                {loading ? "Loading..." : user?.bankAccount ? "Save Account":"Add Bank Account"}
                             </button>
                         </div>
                     </form>

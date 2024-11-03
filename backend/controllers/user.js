@@ -12,6 +12,7 @@ export const register = catchAsyncError(async (req, res) => {
 		count: 1
 	})
 	const isExist = await UserModel.findOne({email});
+    const phoneExist = await UserModel.findOne({phone: phone});
 	if(isExist) {
         res.status(409).json({
             success: false,

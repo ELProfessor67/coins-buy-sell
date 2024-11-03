@@ -2,7 +2,6 @@ import catchAsyncError from "../middlewares/catchAsyncError.js";
 import WithdrawRequestModel from "../models/widthraw.js";
 import ErrorHandler from "../utils/errorHandler.js";
 import UserModel from "../models/user.js";
-import user from "../models/user.js";
 
 export const createWithdrawRequest = catchAsyncError(async(req,res,next)=>{
     const {amount,method,coins} = req.body;
@@ -13,7 +12,7 @@ export const createWithdrawRequest = catchAsyncError(async(req,res,next)=>{
     const user = await UserModel.findById(req.user._id);
     const balance = await user.getBalence();
 
-    if(balance < amount){
+    if(balance < coins){
         return next(new ErrorHandler('Your balance is less than the amount you want to withdraw',400));
     }
 

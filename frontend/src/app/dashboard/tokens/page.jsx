@@ -45,7 +45,7 @@ export default function page() {
 
 
     const handleSubmit = useCallback(async (e) => {
-        setLoading(false)
+        setLoading(true)
         e.preventDefault();
         try {
             const formData = new FormData();
@@ -115,7 +115,7 @@ export default function page() {
                         </tbody>
                     </table>
                 </div>
-            </main>
+           
 
             <DialogBox open={open} onClose={() => setOpen(false)}>
                 <h2 className='text-[24px] font-semibold mb-4 dark:text-white text-black text-center'>Add Token</h2>
@@ -143,6 +143,7 @@ export default function page() {
                     <button className='bg-black dark:bg-white dark:text-black text-white rounded-md px-4 py-2 font-medium flex items-center gap-2 w-full justify-center !mt-8' type='submit' disabled={loading}>{loading ? 'Loading...' : 'Add Token'}</button>
                 </form>
             </DialogBox>
+            </main>
 
         </>
     )
