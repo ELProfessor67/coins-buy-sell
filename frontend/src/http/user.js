@@ -27,6 +27,7 @@ export const getUserBalanceRequest = async () =>  api.get("/balance")
 //payments requests
 export const getRazorpayKeyRequest = async () => api.get("/razarpay/api-key/get");
 export const checkoutRequest = async (formData) => api.post("/razarpay/checkout",formData);
+export const verifyPaymentRequest = async (formData) => api.post("/razarpay/paymentverification",formData);
 
 
 //bank account requests
