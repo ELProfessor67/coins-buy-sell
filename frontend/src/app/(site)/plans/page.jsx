@@ -37,6 +37,7 @@ export default function page() {
 
     // const { data: { key } } = await getRazorpayKeyRequest();
     try {
+      if(!user) throw new Error("Please Login First");
       const formData = new FormData();
       formData.append("amount", amount);
       formData.append("coins", coins);

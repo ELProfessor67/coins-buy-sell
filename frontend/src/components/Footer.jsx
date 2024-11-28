@@ -28,10 +28,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
                         <ul className="space-y-2">
-                            {['Home', 'About Us', 'Services', 'Contact'].map((item) => (
+                            {[['Home','/'],['About Us','/about'], ['Terms and Conditions','/terms-conditions'], ['privacy policy','https://www.termsfeed.com/live/d761652b-e49f-4a02-8bfd-618b215bdfb8'],['Refund and Cancellation','/refund-cancellation']].map((item) => (
                                 <li key={item}>
-                                    <Link href="#" className="text-gray-400 hover:text-white transition duration-300">
-                                        {item}
+                                    <Link href={item[1]} className="text-gray-400 hover:text-white transition duration-300">
+                                        {item[0]}
                                     </Link>
                                 </li>
                             ))}

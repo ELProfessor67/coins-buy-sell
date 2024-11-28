@@ -26,3 +26,12 @@ body
 }
 
 
+p
+{
+  line-height: 1.6;
+}
+
+ol
+{
+  list-style: circle;
+}
