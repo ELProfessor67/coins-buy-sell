@@ -132,6 +132,7 @@ export const paymentVerification = catchAsyncError(async (req, res) => {
 
 
   Cashfree.PGFetchOrder("2022-09-01", order_id).then(async (response) => {
+    if(response.data.order_status != "PAID") throw new Error("Payment Failed");
     payment.razorpay_payment_id = payment_id;
     payment.razorpay_signature = sign;
     payment.status = "success";
@@ -154,7 +155,6 @@ export const paymentVerification = catchAsyncError(async (req, res) => {
       url: `${process.env.FRONTEND_URL}/payment-success?reference=${payment_id}&coins=${payment.coins}`
     });
   }).catch(async (err) => {
-    console.log(err)
     payment.razorpay_payment_id = payment_id;
     payment.razorpay_signature = sign;
     payment.status = "failed";
